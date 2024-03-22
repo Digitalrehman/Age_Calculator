@@ -1,47 +1,27 @@
 let userInput = document.getElementById("dob");
 let DateBox = document.getElementById("Date");
+
+// Set maximum date for input as today's date
 userInput.max = new Date().toISOString().split("T")[0];
 
 const calculateAge = () => {
-  let birth_Date = new Date(userInput.value);
+  // Parse the birth date from the input field
+  let birthDate = new Date(userInput.value);
+  let currentDate = new Date();
 
-  let date = birth_Date.getDate();
-  let month = birth_Date.getMonth() + 1;
-  let year = birth_Date.getFullYear();
+  // Calculate the difference in years, months, and days
+  let ageInMilliseconds = currentDate - birthDate;
+  let ageInYears = Math.floor(ageInMilliseconds / (1000 * 60 * 60 * 24 * 365.25));
+  let ageInMonths = Math.floor(ageInMilliseconds / (1000 * 60 * 60 * 24 * 30.4375)) % 12;
+  let ageInDays = Math.floor(ageInMilliseconds / (1000 * 60 * 60 * 24)) % 30;
 
-  let TodayDate = new Date();
-
-  let todayDate = TodayDate.getDate();
-  let todayMonth = TodayDate.getMonth() + 1;
-  let todayYear = TodayDate.getFullYear();
-
-  let dateCalculation, monthCalculation, YearCalculation;
-  YearCalculation = todayYear - year;
-  if (todayMonth >= month) {
-    monthCalculation = todayMonth - month;
-  } else {
-    YearCalculation--;
-    monthCalculation = 12 + todayMonth - month;
-  }
-
-  if (todayDate >= date) {
-    dateCalculation = todayDate - date;
-  } else {
-    monthCalculation--;
-    dateCalculation = getDaysInMonth(year, month) + todayDate - date;
-  }
-
-  if (monthCalculation < 0) {
-    monthCalculation = 11;
-    YearCalculation--;
-  }
+  // Update the HTML to display the calculated age
   DateBox.innerHTML = `
-
-<div class="DateBox"><div class="top">${dateCalculation}<div class="bottom">Year</div></div></div>
-<div class="DateBox"><div class="top">${monthCalculation}<div class="bottom">Month</div></div></div>
-<div class="DateBox"><div class="top">${YearCalculation}<div class="bottom">Date</div></div></div>
-`;
-  function getDaysInMonth(year, month) {
-    return new Date(year, month, 0).getDate();
-  }
+    <div class="DateBox"><div class="top">${ageInDays}<div class="bottom">Days</div></div></div>
+    <div class="DateBox"><div class="top">${ageInMonths}<div class="bottom">Months</div></div></div>
+    <div class="DateBox"><div class="top">${ageInYears}<div class="bottom">Years</div></div></div>
+  `;
 };
+
+// Call the calculateAge function whenever the date of birth input changes
+userInput.addEventListener("input", calculateAge);
