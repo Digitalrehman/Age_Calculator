@@ -1,29 +1,44 @@
-<html>
-
-<head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Age Calculator</title>
-    <link rel="stylesheet" type="text/css" href="./CSS/style.css">
-</head>
-
-<body>
+    <link rel="stylesheet" href="./CSS/style.css" />
+  </head>
+  <body>
     <video src="./Video/Background.mp4" autoplay loop muted></video>
     <div class="MainBox">
-    <div class="wrapper">
+      <div class="wrapper">
         <h1>Age Calculator</h1>
         <form>
-            <label for="dob">Date of Birth</label>
-            <input type="date" id="dob" name="dob" required><br>
-            <input type="button" value="Calculate Age" onclick="calculateAge()">
+          <label for="dob">Date of Birth</label>
+          <input type="date" id="dob" name="dob" required /><br />
+          <input type="button" value="Calculate Age" onclick="calculateAge()" />
         </form>
-    </div>
-        <div class="Date" id="Date">
-            <div class="DateBox"><div class="top">00<div class="bottom">Year</div></div></div>
-            <div class="DateBox"><div class="top">00<div class="bottom">Month</div></div></div>
-            <div class="DateBox"><div class="top">00<div class="bottom">Date</div></div></div>
+      </div>
+      <div class="Date" id="Date">
+        <div class="DateBox">
+          <div class="top">
+            00
+            <div class="bottom">Year</div>
+          </div>
         </div>
+        <div class="DateBox">
+          <div class="top">
+            00
+            <div class="bottom">Month</div>
+          </div>
+        </div>
+        <div class="DateBox">
+          <div class="top">
+            00
+            <div class="bottom">Date</div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script src="./JS/script.JS"></script>
-</body>
-
-</html
+  </body>
+</html>
